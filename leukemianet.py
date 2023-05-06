@@ -7,10 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1MV5YNzgMOchb8aOP97B9PYEToQzKb3L2
 """
 
-
-
 import numpy as np
-import tensorflow  as tf
+import tensorflow as tf
 from keras import Sequential
 from tensorflow.keras.layers import *
 from tensorflow.keras.models import * 
@@ -44,7 +42,7 @@ validation_generator = test_datagen.flow_from_directory("/content/drive/MyDrive/
     batch_size = 4,
     class_mode = 'categorical')  # 'categorical'
 
-import tensorflow as tf
+
 base_model = tf.keras.applications.EfficientNetB3(weights='imagenet', input_shape=(224,224,3), include_top=False)
 for layer in base_model.layers:
     layer.trainable=False
@@ -63,7 +61,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy','Precision','Recall','AUC'])
 
-import tensorflow as tf
+
 base_model = tf.keras.applications.VGG16(weights='imagenet', input_shape=(224,224,3), include_top=False)
 for layer in base_model.layers:
     layer.trainable=False
@@ -118,8 +116,9 @@ model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNe
 
 # Commented out IPython magic to ensure Python compatibility.
 #%%writefile app.py
+
 import streamlit as st
-import tensorflow as tf
+
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
 @st.cache(allow_output_mutation=True)
