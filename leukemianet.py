@@ -117,7 +117,7 @@ model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNe
 #ngrok.set_auth_token("2NmqkCBhaz9UBEWvfo8AHqi5L6b_256Nk38CRrassvcXLN6fi")
 
 # Commented out IPython magic to ensure Python compatibility.
- %%writefile app.py
+#%%writefile app.py
 import streamlit as st
 import tensorflow as tf
 
