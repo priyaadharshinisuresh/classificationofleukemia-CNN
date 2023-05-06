@@ -106,69 +106,56 @@ ensemble_model.compile(loss='categorical_crossentropy',
 
 model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNet.h5')
 
-! pip install streamlit
+#! pip install streamlit
 
-!pip install -U ipykernel
+#!pip install -U ipykernel
 
-!pip install pyngrok
+#!pip install pyngrok
 
-from pyngrok import ngrok
+#from pyngrok import ngrok
 
-ngrok.set_auth_token("2NmqkCBhaz9UBEWvfo8AHqi5L6b_256Nk38CRrassvcXLN6fi")
+#ngrok.set_auth_token("2NmqkCBhaz9UBEWvfo8AHqi5L6b_256Nk38CRrassvcXLN6fi")
 
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile app.py
-# import streamlit as st
-# import tensorflow as tf
-# 
-# st.set_option('deprecation.showfileUploaderEncoding', False)
-# @st.cache(allow_output_mutation=True)
-# def load_model():
-#   model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNet.h5')
-#   return model
-# model=load_model()
-# 
-# st.write("""
-#          # Leukemia Classification
-#          """
-#          )
-# file = st.file_uploader("Please upload an blood smear image file", type=["jpg", "png"])
-# import cv2
-# from PIL import Image, ImageOps
-# import numpy as np
-# def import_and_predict(image_data, model):
-#     
-#         size = (224,224)    
-#         image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-#         image = np.asarray(image)
-#         img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-#         #img_resize = (cv2.resize(img, dsize=(75, 75),    interpolation=cv2.INTER_CUBIC))/255.
-#         
-#         img_reshape = img[np.newaxis,...]
-#     
-#         ypred = model.predict(img_reshape)
-#         
-#         return ypred
-# if file is None:
-#     st.text("Please upload an image file")
-# else:
-#     image = Image.open(file)
-#     st.image(image, use_column_width=True)
-#     ypred = import_and_predict(image, model)
-#     class_names=['ALL-Acute Lymphocytic Leukemia', 'AML-Acute Myelogenous Leukemia ', 'CLL-Chronic Lymphocytic Leukemia', 'CML-Chronic Myelogenous Leukemia ', 'NORMAL']
-#     string= "This image belongs to : "+class_names[np.argmax(ypred)]
-#     st.success(string)
-# 
-#
+ %%writefile app.py
+import streamlit as st
+import tensorflow as tf
 
-! nohup streamlit run app.py --server.port 80 &
-url = ngrok.connect(port = '80')
-print(url)
-
-from pyngrok import ngrok       
-tunnels = ngrok.get_tunnels()
-tunnels
-
-ngrok.kill()
-
-!wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+st.set_option('deprecation.showfileUploaderEncoding', False)
+@st.cache(allow_output_mutation=True)
+ def load_model():
+   model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNet.h5')
+   return model
+ model=load_model()
+ 
+ st.write("""
+          # Leukemia Classification
+          """
+          )
+ file = st.file_uploader("Please upload an blood smear image file", type=["jpg", "png"])
+ import cv2
+ from PIL import Image, ImageOps
+ import numpy as np
+ def import_and_predict(image_data, model):
+     
+         size = (224,224)    
+         image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+         image = np.asarray(image)
+         img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+         img_resize = (cv2.resize(img, dsize=(75, 75),    interpolation=cv2.INTER_CUBIC))/255.
+         
+         img_reshape = img[np.newaxis,...]
+     
+         ypred = model.predict(img_reshape)
+         
+         return ypred
+ if file is None:
+     st.text("Please upload an image file")
+ else:
+     image = Image.open(file)
+     st.image(image, use_column_width=True)
+     ypred = import_and_predict(image, model)
+     class_names=['ALL-Acute Lymphocytic Leukemia', 'AML-Acute Myelogenous Leukemia ', 'CLL-Chronic Lymphocytic Leukemia', 'CML-Chronic Myelogenous Leukemia ', 'NORMAL']
+     string= "This image belongs to : "+class_names[np.argmax(ypred)]
+     st.success(string)
+ 
