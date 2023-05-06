@@ -123,10 +123,10 @@ import tensorflow as tf
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
 @st.cache(allow_output_mutation=True)
- def load_model():
+def load_model():
    model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNet.h5')
    return model
- model=load_model()
+model=load_model()
  
  st.write("""
           # Leukemia Classification
@@ -136,7 +136,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
  import cv2
  from PIL import Image, ImageOps
  import numpy as np
- def import_and_predict(image_data, model):
+def import_and_predict(image_data, model):
      
          size = (224,224)    
          image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
