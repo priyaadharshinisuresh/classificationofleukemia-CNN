@@ -44,7 +44,7 @@ validation_generator = test_datagen.flow_from_directory("/content/drive/MyDrive/
     batch_size = 4,
     class_mode = 'categorical')  # 'categorical'
 
-
+import tensorflow as tf
 base_model = tf.keras.applications.EfficientNetB3(weights='imagenet', input_shape=(224,224,3), include_top=False)
 for layer in base_model.layers:
     layer.trainable=False
@@ -63,7 +63,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy','Precision','Recall','AUC'])
 
-
+import tensorflow as tf
 base_model = tf.keras.applications.VGG16(weights='imagenet', input_shape=(224,224,3), include_top=False)
 for layer in base_model.layers:
     layer.trainable=False
