@@ -127,15 +127,14 @@ def load_model():
    model=tf.keras.models.load_model('/content/drive/MyDrive/Final Review/LeukemiaNet.h5')
    return model
 model=load_model()
- 
- st.write("""
+st.write("""
           # Leukemia Classification
           """
           )
- file = st.file_uploader("Please upload an blood smear image file", type=["jpg", "png"])
- import cv2
- from PIL import Image, ImageOps
- import numpy as np
+file = st.file_uploader("Please upload an blood smear image file", type=["jpg", "png"])
+import cv2
+from PIL import Image, ImageOps
+import numpy as np
 def import_and_predict(image_data, model):
      
          size = (224,224)    
