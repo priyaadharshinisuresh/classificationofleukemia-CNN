@@ -7,8 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1MV5YNzgMOchb8aOP97B9PYEToQzKb3L2
 """
 
-! pip install tensorflow==2.9.0
-! pip install keras==2.9.0
+
 
 import numpy as np
 import tensorflow  as tf
