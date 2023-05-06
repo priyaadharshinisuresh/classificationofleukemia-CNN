@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1MV5YNzgMOchb8aOP97B9PYEToQzKb3L2
 """
 freeglut3-dev
-libgtk2.0-dev
 import matplotlib.pyplot as plt
 import os
 import PIL
