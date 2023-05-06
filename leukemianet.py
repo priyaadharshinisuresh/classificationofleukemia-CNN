@@ -148,9 +148,9 @@ def import_and_predict(image_data, model):
          ypred = model.predict(img_reshape)
          
          return ypred
- if file is None:
+if file is None:
      st.text("Please upload an image file")
- else:
+else:
      image = Image.open(file)
      st.image(image, use_column_width=True)
      ypred = import_and_predict(image, model)
